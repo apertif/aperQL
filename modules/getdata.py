@@ -2,7 +2,8 @@ from apercal.subs.getdata_alta import getdata_alta
 
 #get scan numbers for calibrators
 def get_cal_scans(taskid,beams):
-    #take taskID number of target
+    """Take taskID of target, random beams, calstart, calend ids
+    """#take taskID number of target
     #Plus arrays of beams
     #Look for earlier observations of calibrator
     #assume ingest happens in order
