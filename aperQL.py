@@ -40,4 +40,6 @@ print cal_tids
 
 #get data
 #Structure is same as apercal
+get_data(args.taskid,cal_tids,beams)
+
 
