@@ -31,6 +31,8 @@ args = parser.parse_args()
 #get random set of beams
 beams = np.random.randint(0,40,args.number)
 
+beams = np.array([2]) #fix for testing
+
 print beams
 
 #get calibrator taskIDs matched to beams
@@ -38,8 +40,19 @@ cal_tids = get_cal_tids(args.calstart,args.calend,beams)
 
 print cal_tids
 
-#get data
-#Structure is same as apercal
-get_data(args.taskid,cal_tids,beams)
+#from here on out, do things for each beam and cal_tid
+#this is because it provides a unit of parallelization
 
+for b,cid in zip(beams,cal_tids):
+    #get data
+    print "Getting data for beam {}".format(b)
+    #target_name,cal_name = get_data(args.taskid,cid,b)
+    target_name = 'S2248+33'
+    cal_name = '3C196'
+
+    #split data
+    #take 1400~1420 MHz as RFI free region
+    #cleans up original data after split
+    print "Splitting data for beam {}".format(b)
+    split_data(args.taskid,b,target_name,cal_name)
 
